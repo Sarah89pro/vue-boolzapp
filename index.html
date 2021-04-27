@@ -70,11 +70,13 @@
 
             <!--CONTACTS-->
             <section class="contacts">
-                <div v-for="contact in contacts" class="contact">
+                <div v-for="contact,index) in contacts" class="contact"
+                :class="{ active: index === activeContact}"
+                @click="chat(index)">
 
                     <div class="member">
-                        <a href="#"></a><img :src="'img/avatar' + contact.avatar + '.jpg'" alt="contact"></a>
-                        <h4 class="black">{{contact.name}}</h4>
+                        <a href="#"></a><img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name"></a>
+                        <h4 class="black">{{ contact.name }}</h4>
                     </div>
                 </div>
                 
@@ -90,13 +92,13 @@
 
                 <!--left section-->
                 <div class="member">
-                    <a href="#"><img :src="'./img/avatar' + contacts[active].avatar + '.jpg'" alt="current-chat"></a>
+                    <a href="#"><img :src="`./img/avatar${contacts[activeContact].avatar}.jpg`" alt="current-chat"></a>
                 </div>
 
                 <!--detail about contact-->
                 <div class="text">
-                    <h5 class="black">{{ contacts[active].name }}</h5>
-                    <h6>{{ contacts[active].messages[contacts[active].messages.length - 1].date }}</h6>
+                    <h5 class="black">{{ contacts[activeContact].name }}</h5>
+                    <h6>{{ contacts[activeContact].messages[contacts[activeContact].messages.length - 1].date }}</h6>
                 </div>
 
                 <!--right section-->
@@ -113,7 +115,7 @@
             <section class="content-main">
                 
                 <div
-                v-for="(msg, i) in contacts[active].messages"
+                v-for="msg in contacts[activeContact].messages"
                 :class="['chat', msg.status]">
                     <h5 class="black">{{ msg.message }}</h5>
                     <h6>{{ msg.date }}</h6>
@@ -139,7 +141,7 @@
                 <a href="#"><i class="far fa-smile"></i></a>
                 <input type="text" placeholder="Scrivi un messaggio"
                 v-model.trim= "mex"
-                @keyup.enter="addMex(active)">
+                @keyup.enter="addMex(activeContact)">
                 <a href="#"><i class="fas fa-microphone"></i></a>
             </footer>
 

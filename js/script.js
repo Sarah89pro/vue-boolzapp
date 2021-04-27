@@ -6,7 +6,7 @@
     el: '#app',
     data: {
         //indice di partenza contatto attivo
-        active: 0,
+        activeContact: 0,
         //messaggi
         mex: '',
         //vuoto  
@@ -101,20 +101,20 @@
 
     },
     methods: {
-        chat(i) {
+        chat(index) {
             //indice contatto
-            console.log(i);
+            console.log(index);
 
-            this.active = i;
+            this.activeContact = index;
         },
-        addMex(i) {
+        addMex(index) {
             //New mex
             console.log(this.mex);
 
             if (this.mex !== "") {  
 
                 //
-                const activeMex = this.contacts[this.active].messages
+                const activeMex = this.contacts[this.activeContact].messages
 
                 activeMex.push({ 
                     date: dayjs().format("DD/MM/YY, HH:mm:ss"),
@@ -135,6 +135,18 @@
                 }, 1000); 
             }
         },
-        
+        search() {
+            //Ricerca nei contatti
+            this.contacts.forEach((element) => { 
+
+                const ricerca = this.inputSearch.toLowerCase();
+
+                if (element.name.toLowerCase().includes(ricerca, 0)) {
+                    element.visible = true;
+                  } else {
+                    element.visible = false;
+                  }
+            });
+        },
     }
 });

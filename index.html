@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Link Fontawesome-->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous'/>
+    <!--Link Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <!--Link Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!--Link Css-->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Boolzapp</title>
+</head>
+<body>
+    <!--APP-->
+    <div id="app" class="container">
+
+
+        <!--ASIDE-->
+        <aside class="side">
+
+
+            <!--USER-->
+            <section class="user">
+
+                <!--left section-->
+                <div class="member">
+                    <a href="#"></a><img src="./img/avatar_io.jpg" alt="user"></a>
+                    <h4 class="black">Tu</h4>
+                </div>
+
+                <!--right section-->
+                <ul class="icons">
+                    <li><a href="#"><i class="fas fa-circle-notch"></i></a></li>
+                    <li><a href="#"><i class="fas fa-comment-alt"></i></a></li>
+                    <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+                </ul>
+            </section>
+
+
+            <!--NOTIFICATIONS-->
+            <section class="notification">
+                <ul class="bell">
+                    <li><a href="#"><i class="fas fa-bell-slash"></i></a></li>
+                </ul>
+
+                <div class="text">
+                    <h5 class="black">Ricevi notifiche di nuovi messaggi</h5>
+                    <h6>Attiva notifiche desktop</h6>
+                </div>
+            </section>
+
+
+            <!--CHAT-->
+            <section class="new-chat">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i></a>
+                    </li>
+                </ul>
+
+                <!--search input-->
+                <input type="text" placeholder="Cerca o inizia una nuova chat">
+            </section>
+
+
+            <!--CONTACTS-->
+            <section class="contacts">
+                <div v-for="contact in contacts" class="contact">
+
+                    <div class="member">
+                        <a href="#"></a><img :src="'img/avatar' + contact.avatar + '.jpg'" alt="contact"></a>
+                        <h4 class="black">{{contact.name}}</h4>
+                    </div>
+                </div>
+                
+            </section>
+            
+        </aside>
+
+
+        <!--MAIN-->
+        <main class="content">
+
+            <header class="content-header">
+
+                <!--left section-->
+                <div class="member">
+                    <a href="#"><img :src="'./img/avatar' + contacts[active].avatar + '.jpg'" alt="current-chat"></a>
+                </div>
+
+                <!--detail about contact-->
+                <div class="text">
+                    <h5 class="black">{{ contacts[active].name }}</h5>
+                    <h6>{{ contacts[active].messages[contacts[active].messages.length - 1].date }}</h6>
+                </div>
+
+                <!--right section-->
+                <ul class="icons">
+                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                    <li><a href="#"><i class="fas fa-paperclip"></i></a></li>
+                    <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+                </ul>
+
+            </header>
+
+
+            <!--CHAT WINDOW-->
+            <section class="content-main">
+                
+                <div
+                v-for="(msg, i) in contacts[active].messages"
+                :class="['chat', msg.status]">
+                    <h5 class="black">{{ msg.message }}</h5>
+                    <h6>{{ msg.date }}</h6>
+                </div>
+
+                
+                <!--mex1
+                <div class="chat sent">
+                    <h5 class="black">Messaggio inviato</h5>
+                    <h6>10/01/2021 15:50:00</h6>
+                </div>-->
+
+                <!--mex2
+                <div class="chat received">
+                    <h5 class="black">Messaggio ricevuto</h5>
+                    <h6>10/01/2021 15:50:00</h6>
+                </div>-->
+            </section>
+
+
+            <!--FOOTER-->
+            <footer class="content-footer">
+                <a href="#"><i class="far fa-smile"></i></a>
+                <input type="text" placeholder="Scrivi un messaggio"
+                v-model.trim= "mex"
+                @keyup.enter="addMex(active)">
+                <a href="#"><i class="fas fa-microphone"></i></a>
+            </footer>
+
+        </main>
+    </div>
+    
+
+    <!-- DAY JS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+    <!--JS-->
+    <script src="js/script.js"></script>
+</body>
+</html>

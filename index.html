@@ -64,13 +64,19 @@
                 </ul>
 
                 <!--search input-->
-                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                <input
+                @keyup="search"
+                name="search"
+                type="text" 
+                placeholder="Cerca o inizia una nuova chat"
+                v-model.trim="inputSearch">
             </section>
 
 
             <!--CONTACTS-->
             <section class="contacts">
-                <div v-for="contact,index) in contacts" class="contact"
+                <div v-for="(contact,index) in contacts" class="contact"
+                v-show="contact.visible"
                 :class="{ active: index === activeContact}"
                 @click="chat(index)">
 

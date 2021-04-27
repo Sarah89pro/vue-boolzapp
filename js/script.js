@@ -135,6 +135,18 @@
                 }, 1000); 
             }
         },
-        
+        search() {
+            //Ricerca nei contatti
+            this.contacts.forEach((element) => { 
+
+                const find = this.inputSearch.toLowerCase();
+
+                if (element.name.toLowerCase().includes(find)) {
+                    element.visible = true;
+                  } else {
+                    element.visible = false;
+                  }
+            });
+        },
     }
 });

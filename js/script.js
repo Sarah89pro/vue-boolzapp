@@ -96,6 +96,28 @@
                     }
                 ],
             },
+            {
+                name: 'Ugo',
+                avatar: '_5',
+                visible: true,
+                messages: [
+                    {
+                        date: '28/04/2020 11:15:45',
+                        message: 'Ti è piaciuto il film di Ėjzenštejn?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '28/04/2020 11:20:10',
+                        message: 'Per me la corazzata Potëmkin è una cagata pazzesca!',
+                        status: 'received'
+                    },
+                    {
+                        date: '28/04/2020 12:00:22',
+                        message: 'Si! Bravo!',
+                        status: 'sent'
+                    }
+                ],
+            },
         ],
         
 

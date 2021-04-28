@@ -151,9 +151,18 @@
 
                     activeMex.push({ 
                         date: dayjs().format("DD/MM/YY, HH:mm:ss"),
-                        message: "ok",
+                        message: "ok", 
                         status: "received"
                     });
+
+                    if (this.activeContact === 4) {
+                        activeMex.push({ 
+                            date: dayjs().format("DD/MM/YY, HH:mm:ss"),
+                            message: "Sveglia e caffè | barba e bidè | presto che perdo il tram.", 
+                            status: "received"
+                        });
+                    }
+
                 }, 1000); 
             }
         },
